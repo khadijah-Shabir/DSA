@@ -1,45 +1,47 @@
-#include <iostream>
-#include <vector>
-#include <stack>
+#include <iostream> // Includes the I/O stream library for input/output operations.
+#include <vector>   // Includes the vector container library.
+#include <stack>    // Includes the stack container library.
 
-using namespace std;
+using namespace std; // Allows use of the standard namespace without prefix.
 
-// Definition for a binary tree node.
+// TreeNode structure definition with constructor initialization.
 struct TreeNode {
-    int val;
-    TreeNode *left;
-    TreeNode *right;
-    TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+    int val; // Holds the value of the node.
+    TreeNode *left; // Pointer to the left child.
+    TreeNode *right; // Pointer to the right child.
+    TreeNode(int x) : val(x), left(NULL), right(NULL) {} // Constructor to initialize the node.
 };
 
+// Solution class with the preorderTraversal method.
 class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* A) {
-        stack<TreeNode*> st;
-        TreeNode* node = A;
-        vector<int> v;
-        while (!st.empty() || node != NULL) {
+        stack<TreeNode*> st; // Stack to keep track of nodes.
+        TreeNode* node = A; // Start with the root node.
+        vector<int> v; // Vector to store the traversal result.
+        while (!st.empty() || node != NULL) { // Continue until stack is empty and node is NULL.
             if (node != NULL) {
-                v.push_back(node->val);
-                st.push(node);
-                node = node->left;
+                v.push_back(node->val); // Add the node value to the vector.
+                st.push(node); // Push the node onto the stack.
+                node = node->left; // Move to the left child.
             } else {
-                node = st.top();
-                st.pop();
-                node = node->right;
+                node = st.top(); // Get the top node from the stack.
+                st.pop(); // Remove the top node from the stack.
+                node = node->right; // Move to the right child.
             }
         }
-        return v;
+        return v; // Return the traversal result.
     }
 };
 
 int main() {
-    // Create the binary tree:
+     // Create the binary tree:
     //       1
     //      / \
     //     2   3
     //    / \   \
     //   4   5   6
+    // Create the binary tree as per the given structure.
     TreeNode* root = new TreeNode(1);
     root->left = new TreeNode(2);
     root->right = new TreeNode(3);
@@ -47,18 +49,18 @@ int main() {
     root->left->right = new TreeNode(5);
     root->right->right = new TreeNode(6);
 
-    // Create Solution object and perform preorder traversal
+    // Instantiate Solution and perform preorder traversal.
     Solution sol;
     vector<int> result = sol.preorderTraversal(root);
 
-    // Print the result
+    // Print the preorder traversal result.
     cout << "Preorder traversal of the binary tree is: ";
     for (int val : result) {
-        cout << val << " ";
+        cout << val << " "; // Output each value in the result vector.
     }
     cout << endl;
 
-    // Clean up dynamically allocated memory
+    // Clean up dynamically allocated memory to prevent memory leaks.
     delete root->left->left;
     delete root->left->right;
     delete root->left;
@@ -66,5 +68,5 @@ int main() {
     delete root->right;
     delete root;
 
-    return 0;
+    return 0; // Return 0 to indicate successful completion.
 }
