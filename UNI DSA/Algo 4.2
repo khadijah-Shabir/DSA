@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int n = 5;
+    int LA[n]={1,2,3,4,5};
+    int j=n;
+    int k=3; //targett position where new element have to be inserted
+    int target=10;
+    while (j>=k){
+       LA[j+1]=LA[j];
+       j=j-1;
+    }
+    LA[k]=target;
+    n=n+1;
+    for(int i = 0;i<n;i++){
+        cout<<LA[i]<<" ";
+    }
+    
+    return 0;
+}
