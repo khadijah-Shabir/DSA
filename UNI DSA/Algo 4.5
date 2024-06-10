@@ -1,0 +1,52 @@
+#include <iostream>
+using namespace std;
+
+// Function for linear search with sentinel
+void linearSearch(int DATA[], int N, int ITEM, int &LOC) {
+    // Step 1: Dynamically allocate memory for a new array with size N + 1
+    int* extendedData = new int[N + 1];
+    
+    // Copy elements from original DATA array to extendedData array
+    for (int i = 0; i < N; ++i) {
+        extendedData[i] = DATA[i];
+    }
+    
+    // Insert ITEM at the end of the extendedData array
+    extendedData[N] = ITEM;
+    N++; // Increment N to reflect the new size of the array
+
+    // Step 2: Initialize the counter
+    LOC = 1; // Array index in the algorithm starts from 1
+
+    // Step 3: Search for ITEM
+    while (LOC <= N && extendedData[LOC - 1] != ITEM) {
+        LOC++;
+    }
+
+    // Step 4 & 5: Check if search was successful
+    if (LOC == N) {
+        LOC = 0; // Unsuccessful search
+    }
+
+    // Free the dynamically allocated memory to prevent memory leaks
+    delete[] extendedData;
+}
+
+int main() {
+    int N = 5;
+    int DATA[] = {1, 2, 3, 4, 5};
+    int ITEM = 5;
+    int LOC;
+
+    // Call the linear search function
+    linearSearch(DATA, N, ITEM, LOC);
+
+    // Output the result
+    if (LOC != 0) {
+        cout << "Target found at position " << LOC << endl;
+    } else {
+        cout << "Target not found" << endl;
+    }
+
+    return 0;
+}
