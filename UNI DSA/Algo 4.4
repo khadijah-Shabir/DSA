@@ -1,0 +1,22 @@
+#include<iostream>
+using namespace std;
+int main(){
+    //Linear search 
+    int n=5;
+    int data[n]={1,2,3,4,5};
+    int target=67;
+    bool found=false;
+    
+    for(int k=0; k<n; k++){
+        if (data[k]==target){
+            cout<<"Target found";
+            found = true;
+            break;
+      }
+    }
+    if(!found){
+    cout<<"target not found";
+    }
+
+   return 0;
+}
