@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int n=5;
+    int *ptr= new int[n];
+    cout << "Enter " << n << " sorted elements: ";
+    for (int i=0; i<n; i++){
+        cin>>ptr[i];
+    }
+    int item=5;
+    int beg=0;
+    int End=n;
+    int  mid=(beg+End)/2;
+    while (beg<=End){
+        if (ptr[mid] == item) {
+            cout << "Item found at index " << mid << endl;
+            delete[] ptr; // Free dynamically allocated memory
+            return 0;
+        if(item<ptr[mid]){
+            end = mid - 1;
+        }
+        if(item>ptr[mid]){
+            beg=mid+1;
+        }
+        mid=(beg+End)/2;
+    }
+    cout<<"Element not found"<<endl;
+    delete[] ptr;
+    return 0;
+    
+}
+}
