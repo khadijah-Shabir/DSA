@@ -1,0 +1,44 @@
+#include<iostream>
+using namespace std;
+int main(){
+    int rowsA=2;
+    int colsA=3;
+    int rowsB=3;
+    int colsB=4;
+    
+    int arrA[2][3]{
+        {1,2,3},
+        {4,5,6}
+    };
+    
+    int arrB[3][4]{
+        {7,8,9,10},
+        {11,12,13,14},
+        {15,16,17,18}
+        
+    };
+    
+    int arrC[2][4]={0};
+    
+    for(int i=0; i<rowsA; i++){
+        for(int j=0; j<colsB; j++){
+            for(int k=0; k<rowsB; k++){
+                arrC[i][j]+=arrA[i][k]*arrB[k][j];
+            }
+        }
+        
+    }
+    
+    for(int i=0; i<2; i++){
+        for(int j=0; j<4; j++){
+            cout<<arrC[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+    
+    
+    
+    
+    
+    
+}
