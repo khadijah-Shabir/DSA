@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+
+const int MAXSTK = 100; // Define the maximum size of the stack
+
+// Function to push an item onto the stack
+void PUSH(int stack[], int &top, int item) {
+    if (top == MAXSTK - 1) {
+        cout << "OVERFLOW" << endl;
+        return;
+    }
+    top = top + 1;
+    stack[top] = item;
+}
+
+// Function to pop an item from the stack
+void POP(int stack[], int &top, int &item) {
+    if (top == -1) {
+        cout << "UNDERFLOW" << endl;
+        return;
+    }
+    item = stack[top];
+    top = top - 1;
+}
+
+int main() {
+    int stack[MAXSTK]; // Declare the stack array
+    int top = -1; // Initialize the top of the stack to -1 (empty stack)
+    
+    // Push some numbers onto the stack
+    for (int i = 1; i <= 10; ++i) {
+        PUSH(stack, top, i);
+    }
+    
+    // Pop all elements from the stack and print them
+    int item;
+    while (top != -1) {
+        POP(stack, top, item);
+        cout << "Popped item: " << item << endl;
+    }
+
+    return 0;
+}
