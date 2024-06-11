@@ -1,0 +1,45 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void mergeArrays(vector<int>& arrA, vector<int>& arrB, vector<int>& arrC) {
+    int i = 0, j = 0, k = 0;
+    int nA = arrA.size();
+    int nB = arrB.size();
+    
+    // Merge elements from arrA and arrB into arrC
+    while (i < nA && j < nB) {
+        if (arrA[i] <= arrB[j]) {
+            arrC[k++] = arrA[i++];
+        } else {
+            arrC[k++] = arrB[j++];
+        }
+    }
+    
+    // Copy remaining elements of arrA, if any
+    while (i < nA) {
+        arrC[k++] = arrA[i++];
+    }
+    
+    // Copy remaining elements of arrB, if any
+    while (j < nB) {
+        arrC[k++] = arrB[j++];
+    }
+}
+
+int main() {
+    vector<int> arrA = {1, 3, 5, 7};
+    vector<int> arrB = {2, 4, 6, 8};
+    vector<int> arrC(arrA.size() + arrB.size());
+
+    mergeArrays(arrA, arrB, arrC);
+
+    cout << "Merged array: ";
+    for (int i = 0; i < arrC.size(); i++) {
+        cout << arrC[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
