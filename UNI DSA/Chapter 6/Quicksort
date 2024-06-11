@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+#include <stack>
+
+using namespace std;
+
+void quick(vector<int>& A, int BEG, int END, int& pivot) {
+    int i = BEG + 1;  // Start i just after the pivot
+    int j = END;      // Start j at the end
+    pivot = BEG;      // Pivot is initially at BEG
+
+    while (i <= j) {
+        // Scan from right to left
+        do {
+            j--;
+        } while (A[pivot] <= A[j] && i <= j);
+
+        // Scan from left to right
+        do {
+            i++;
+        } while (A[i] <= A[pivot] && i <= j);
+
+        if (i < j) {
+            swap(A[i], A[j]);
+        }
+    }
+
+    // Swap pivot with A[j]
+    swap(A[pivot], A[j]);
+    pivot = j;
+}
+
+void quicksort(vector<int>& A) {
+    int N = A.size();
+    stack<int> LOWER, UPPER;
+
+    if (N > 1) {
+        LOWER.push(0);
+        UPPER.push(N - 1);
+    }
+
+    while (!LOWER.empty()) {
+        int BEG = LOWER.top(); LOWER.pop();
+        int END = UPPER.top(); UPPER.pop();
+        int pivot;
+
+        quick(A, BEG, END, pivot);
+
+        if (BEG < pivot - 1) {
+            LOWER.push(BEG);
+            UPPER.push(pivot - 1);
+        }
+
+        if (pivot + 1 < END) {
+            LOWER.push(pivot + 1);
+            UPPER.push(END);
+        }
+    }
+}
+
+int main() {
+    vector<int> arr = {38, 27, 43, 3, 9, 82, 10};
+
+    cout << "Given array is: ";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    quicksort(arr);
+
+    cout << "Sorted array is: ";
+    for (int i = 0; i < arr.size(); i++)
+        cout << arr[i] << " ";
+    cout << endl;
+
+    return 0;
+}
