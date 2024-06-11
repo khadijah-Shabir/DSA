@@ -1,0 +1,38 @@
+#include <iostream>
+using namespace std;
+
+const int MAXSTK = 100; // Define the maximum size of the stack
+
+// Function to push an item onto the stack
+void PUSH(int stack[], int &top, int item) {
+    // Step 1: Check if the stack is already filled
+    if (top == MAXSTK - 1) {
+        cout << "OVERFLOW" << endl;
+        return;
+    }
+    
+    // Step 2: Increase the top index by 1
+    top = top + 1;
+    
+    // Step 3: Insert the item in the new top position
+    stack[top] = item;
+}
+
+int main() {
+    int stack[MAXSTK]; // Declare the stack array
+    int top = -1; // Initialize the top of the stack to -1 (empty stack)
+    
+    // Push 50 numbers onto the stack
+    for (int i = 1; i <= 50; ++i) {
+        PUSH(stack, top, i);
+    }
+    
+    // Display the stack
+    cout << "Stack elements:" << endl;
+    for (int i = 0; i <= top; ++i) {
+        cout << stack[i] << " ";
+    }
+    cout << endl;
+    
+    return 0;
+}
