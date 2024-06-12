@@ -1,0 +1,73 @@
+#include <iostream>
+using namespace std;
+
+#define N 5 // Maximum size of the queue
+
+class Queue {
+private:
+    int queue[N];
+    int front;
+    int rear;
+
+public:
+    Queue() {
+        front = -1; // Queue is initially empty
+        rear = -1;  // Queue is initially empty
+    }
+
+    void enqueue(int item) {
+        // Check if the queue is already full
+        if ((front == 0 && rear == N-1) || (front == rear + 1)) {
+            cout << "Overflow" << endl;
+            return;
+        }
+
+        // Find new value of REAR
+        if (front == -1) { // Queue is initially empty
+            front = 0;
+            rear = 0;
+        } else if (rear == N-1) { // Wrap around
+            rear = 0;
+        } else {
+            rear = rear + 1;
+        }
+
+        // Insert the new element
+        queue[rear] = item;
+    }
+
+    void display() {
+        if (front == -1) {
+            cout << "Queue is empty" << endl;
+            return;
+        }
+
+        cout << "Queue elements: ";
+        if (rear >= front) {
+            for (int i = front; i <= rear; i++)
+                cout << queue[i] << " ";
+        } else {
+            for (int i = front; i < N; i++)
+                cout << queue[i] << " ";
+            for (int i = 0; i <= rear; i++)
+                cout << queue[i] << " ";
+        }
+        cout << endl;
+    }
+};
+
+int main() {
+    Queue q;
+    q.enqueue(10);
+    q.enqueue(20);
+    q.enqueue(30);
+    q.enqueue(40);
+    q.enqueue(50);
+    
+    // Attempt to enqueue when the queue is full
+    q.enqueue(60);
+
+    q.display();
+
+    return 0;
+}
