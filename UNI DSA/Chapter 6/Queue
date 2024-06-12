@@ -1,0 +1,76 @@
+#include <iostream>
+#include <queue>
+
+using namespace std;
+
+int main() {
+    // Declare a queue of integers
+    queue<int> q;
+
+    // Insert elements into the queue
+    q.push(10);
+    q.push(20);
+    q.push(30);
+
+    // Insert a new element into the queue
+    int newElement;
+    cout << "Enter a new element to insert into the queue: ";
+    cin >> newElement;
+    q.push(newElement);
+
+    // Display the elements in the queue
+    cout << "Elements in the queue: ";
+    while (!q.empty()) {
+        cout << q.front() << " ";
+        q.pop();
+    }
+    cout << endl;
+
+    return 0;
+}
+//Insertion in between the elements
+
+#include <iostream>
+#include <deque>
+
+using namespace std;
+
+int main() {
+    // Declare a deque of integers
+    deque<int> dq;
+
+    // Insert elements into the deque
+    dq.push_back(10);
+    dq.push_back(20);
+    dq.push_back(30);
+
+    // Display the elements in the deque before insertion
+    cout << "Deque before insertion: ";
+    for (int elem : dq) {
+        cout << elem << " ";
+    }
+    cout << endl;
+
+    // Insert a new element into the deque at a specific position
+    int newElement, position;
+    cout << "Enter a new element to insert into the deque: ";
+    cin >> newElement;
+    cout << "Enter the position to insert the new element: ";
+    cin >> position;
+
+    if (position >= 0 && position <= dq.size()) {
+        dq.insert(dq.begin() + position, newElement);
+    } else {
+        cout << "Invalid position!" << endl;
+    }
+
+    // Display the elements in the deque after insertion
+    cout << "Deque after insertion: ";
+    for (int elem : dq) {
+        cout << elem << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
+
